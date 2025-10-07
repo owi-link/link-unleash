@@ -14,6 +14,15 @@ variable "env" {
   type = string
 }
 
+variable "service_port" {
+  type = number
+}
+
+variable "service_startup_probe" {
+  type    = any
+  default = {}
+}
+
 variable "cpu" {
   type = string
 }

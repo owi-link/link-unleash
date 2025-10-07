@@ -8,10 +8,19 @@ locals {
         memory        = "1Gi"
         min_instances = 1
         max_instances = 5
+        service_port = 4242
         secrets = [
             {
-                env_var     = "AUTH0_CLIENT_SECRET"
-                secret_name = "auth0_client_secret"
+                env_var     = "UNLEASH_SECRET"
+                secret_name = "unleash-secret"
+            },
+            {
+                env_var     = "DB_USER"
+                secret_name = "db-user"
+            },
+            {
+                env_var     = "DB_PASSWORD"
+                secret_name = "db-password"
             }
         ]
     }
