@@ -1,0 +1,76 @@
+# ==== Defaults (can be overridden by env/region) ====
+locals {
+    env_cfg = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+
+    defaults = {
+        service_name = "link-unleash"
+        cpu           = "1"
+        memory        = "1Gi"
+        min_instances = 1
+        max_instances = 5
+        secrets = [
+            {
+                env_var     = "AUTH0_CLIENT_SECRET"
+                secret_name = "auth0_client_secret"
+            }
+        ]
+    }
+}
+
+remote_state {
+  backend = "gcs"
+  config = {
+    project  = local.env_cfg.locals.env_overrides.project_id
+    bucket   = "link-${local.env_cfg.locals.env_overrides.env}-tf-state"
+    prefix   = "${local.defaults.service_name}/${path_relative_to_include()}"
+    location = "US"
+  }
+  generate = {
+    path      = "${local.defaults.service_name}-backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+}
+
+generate "providers" {
+  path      = "providers.tf"
+  if_exists = "overwrite"
+  contents  = <<EOF
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google",
+      version = "7.5.0"
+    }
+    google-beta = {
+      source = "hashicorp/google-beta",
+      version = "7.5.0"
+    }
+  }
+}
+
+provider "google" {
+  default_labels = {
+    project     = var.project_id
+    env         = var.env
+    region      = var.region
+    app         = var.service_name
+    managed_by  = "terraform"
+  }
+}
+provider "google-beta" {
+  default_labels = {
+    project     = var.project_id
+    env         = var.env
+    region      = var.region
+    app         = var.service_name
+    managed_by  = "terraform"
+  }
+}
+EOF
+}
+
+terraform {
+  source = "${get_repo_root()}/infrastructure/modules/gcp/service"
+}
+
+inputs = local.defaults
