@@ -23,6 +23,11 @@ variable "service_startup_probe" {
   default = {}
 }
 
+variable "service_liveness_probe" {
+  type    = any
+  default = null
+}
+
 variable "cpu" {
   type = string
 }
