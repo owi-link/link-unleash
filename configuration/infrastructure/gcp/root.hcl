@@ -1,39 +1,39 @@
 # ==== Defaults (can be overridden by env/region) ====
 locals {
-    env_cfg = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  env_cfg = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
-    defaults = {
-        service_name = "link-unleash"
-        cpu           = 1
-        memory        = "1Gi"
-        min_instances = 1
-        max_instances = 5
-        service_port = 4242
-        env_vars = [
-            {
-                name = "UNLEASH_DISABLE_DB_MIGRATION"
-                value = "false"
-            },
-            {
-                name = "UNLEASH_URL"
-                value = "https://features.liminal-infra.com"
-            }
-        ]
-        secrets = [
-            {
-                env_var     = "UNLEASH_SECRET"
-                secret_name = "unleash-secret"
-            },
-            {
-                env_var     = "DB_USER"
-                secret_name = "db-user"
-            },
-            {
-                env_var     = "DB_PASSWORD"
-                secret_name = "db-password"
-            }
-        ]
-    }
+  defaults = {
+    service_name  = "link-unleash"
+    cpu           = 1
+    memory        = "1Gi"
+    min_instances = 1
+    max_instances = 5
+    service_port  = 4242
+    env_vars = [
+      {
+        name  = "UNLEASH_DISABLE_DB_MIGRATION"
+        value = "false"
+      },
+      {
+        name  = "UNLEASH_URL"
+        value = "https://features.liminal-infra.com"
+      }
+    ]
+    secrets = [
+      {
+        env_var     = "UNLEASH_SECRET"
+        secret_name = "unleash-secret"
+      },
+      {
+        env_var     = "DB_USER"
+        secret_name = "db-user"
+      },
+      {
+        env_var     = "DB_PASSWORD"
+        secret_name = "db-password"
+      }
+    ]
+  }
 }
 
 remote_state {
