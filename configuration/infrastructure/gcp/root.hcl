@@ -9,6 +9,16 @@ locals {
         min_instances = 1
         max_instances = 5
         service_port = 4242
+        env_vars = [
+            {
+                name = "UNLEASH_DISABLE_DB_MIGRATION"
+                value = "false"
+            },
+            {
+                name = "UNLEASH_URL"
+                value = "https://features.liminal-infra.com"
+            }
+        ]
         secrets = [
             {
                 env_var     = "UNLEASH_SECRET"
@@ -48,11 +58,11 @@ terraform {
   required_providers {
     google = {
       source = "hashicorp/google",
-      version = "7.5.0"
+      version = "~> 7.6.0"
     }
     google-beta = {
       source = "hashicorp/google-beta",
-      version = "7.5.0"
+      version = "~> 7.6.0"
     }
   }
 }

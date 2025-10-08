@@ -13,6 +13,7 @@ module "cloud-run-service" {
   memory        = var.memory
   min_instances = var.min_instances
   max_instances = var.max_instances
+  env_vars      = var.env_vars
   secrets       = var.secrets
 }
 
