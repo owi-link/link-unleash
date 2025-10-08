@@ -4,7 +4,7 @@ locals {
 
     defaults = {
         service_name = "link-unleash"
-        cpu           = "1"
+        cpu           = 1
         memory        = "1Gi"
         min_instances = 1
         max_instances = 5
