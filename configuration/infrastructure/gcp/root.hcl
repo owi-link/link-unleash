@@ -3,12 +3,14 @@ locals {
   env_cfg = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
   defaults = {
-    service_name  = "link-unleash"
-    cpu           = 1
-    memory        = "1Gi"
-    min_instances = 1
-    max_instances = 5
-    service_port  = 4242
+    service_name          = "unleash"
+    cpu                   = 1
+    memory                = "1Gi"
+    min_instances         = 1
+    max_instances         = 5
+    service_port          = 4242
+    allow_unauthenticated = true
+    ingress_mode          = "INGRESS_TRAFFIC_INTERNAL_ONLY"
     env_vars = [
       {
         name  = "UNLEASH_DISABLE_DB_MIGRATION"

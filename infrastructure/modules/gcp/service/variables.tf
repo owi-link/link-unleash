@@ -18,6 +18,14 @@ variable "service_port" {
   type = number
 }
 
+variable "ingress_mode" {
+  type = string
+}
+
+variable "allow_unauthenticated" {
+  type = bool
+}
+
 variable "service_startup_probe" {
   type    = any
   default = {}

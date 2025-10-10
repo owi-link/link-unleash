@@ -9,13 +9,15 @@ module "cloud-run-service" {
   service_startup_probe  = var.service_startup_probe
   service_liveness_probe = var.service_liveness_probe
   # image         = "${google_artifact_registry_repository.cloud_run_service.registry_uri}/custom-unleash" # TODO: Output of the CICD module (ClouBuild, Artifact Registry)
-  image         = "us-docker.pkg.dev/cloudrun/container/hello"
-  cpu           = var.cpu
-  memory        = var.memory
-  min_instances = var.min_instances
-  max_instances = var.max_instances
-  env_vars      = var.env_vars
-  secrets       = var.secrets
+  image                 = "us-docker.pkg.dev/cloudrun/container/hello"
+  cpu                   = var.cpu
+  memory                = var.memory
+  min_instances         = var.min_instances
+  max_instances         = var.max_instances
+  env_vars              = var.env_vars
+  secrets               = var.secrets
+  allow_unauthenticated = var.allow_unauthenticated
+  ingress_mode          = var.ingress_mode
 }
 
 resource "google_artifact_registry_repository" "cloud_run_service" {

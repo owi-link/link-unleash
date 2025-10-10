@@ -27,9 +27,11 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_allow_unauthenticated"></a> [allow\_unauthenticated](#input\_allow\_unauthenticated) | n/a | `bool` | n/a | yes |
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | n/a | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | n/a | `string` | n/a | yes |
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | n/a | <pre>list(object({<br/>    name  = string<br/>    value = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_ingress_mode"></a> [ingress\_mode](#input\_ingress\_mode) | n/a | `string` | n/a | yes |
 | <a name="input_max_instances"></a> [max\_instances](#input\_max\_instances) | n/a | `number` | n/a | yes |
 | <a name="input_memory"></a> [memory](#input\_memory) | n/a | `string` | n/a | yes |
 | <a name="input_min_instances"></a> [min\_instances](#input\_min\_instances) | n/a | `number` | n/a | yes |
