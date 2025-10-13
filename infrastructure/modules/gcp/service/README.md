@@ -38,7 +38,7 @@ No requirements.
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | n/a | <pre>list(object({<br/>    env_var     = string<br/>    secret_name = string<br/>  }))</pre> | `[]` | no |
-| <a name="input_service_domain"></a> [service\_domain](#input\_service\_domain) | n/a | `string` | n/a | yes |
+| <a name="input_service_domain"></a> [service\_domain](#input\_service\_domain) | n/a | `string` | `null` | no |
 | <a name="input_service_liveness_probe"></a> [service\_liveness\_probe](#input\_service\_liveness\_probe) | n/a | `any` | `null` | no |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | n/a | `string` | n/a | yes |
 | <a name="input_service_port"></a> [service\_port](#input\_service\_port) | n/a | `number` | n/a | yes |

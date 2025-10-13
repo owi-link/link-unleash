@@ -19,7 +19,8 @@ variable "service_port" {
 }
 
 variable "service_domain" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "ingress_mode" {
