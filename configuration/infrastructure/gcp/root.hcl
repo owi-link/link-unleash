@@ -10,7 +10,8 @@ locals {
     max_instances         = 5
     service_port          = 4242
     allow_unauthenticated = true
-    ingress_mode          = "INGRESS_TRAFFIC_INTERNAL_ONLY"
+    ingress_mode          = "INGRESS_TRAFFIC_ALL"
+    service_domain        = "luis3m-unleash.liminal.co"
     env_vars = [
       {
         name  = "UNLEASH_DISABLE_DB_MIGRATION"

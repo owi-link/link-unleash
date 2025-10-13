@@ -18,6 +18,10 @@ variable "service_port" {
   type = number
 }
 
+variable "service_domain" {
+  type = string
+}
+
 variable "ingress_mode" {
   type = string
 }

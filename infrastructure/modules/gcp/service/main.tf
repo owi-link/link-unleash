@@ -6,6 +6,7 @@ module "cloud-run-service" {
   env                    = var.env
   region                 = var.region
   service_port           = var.service_port
+  service_domain         = var.service_domain
   service_startup_probe  = var.service_startup_probe
   service_liveness_probe = var.service_liveness_probe
   # image         = "${google_artifact_registry_repository.cloud_run_service.registry_uri}/custom-unleash" # TODO: Output of the CICD module (ClouBuild, Artifact Registry)
