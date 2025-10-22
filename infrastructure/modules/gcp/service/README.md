@@ -15,7 +15,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud-run-service"></a> [cloud-run-service](#module\_cloud-run-service) | /Users/luismoreira/Workspace/terraform-gcp-cloud-run-service | n/a |
+| <a name="module_cloud-run-service"></a> [cloud-run-service](#module\_cloud-run-service) | git@github.com:owi-link/terraform-gcp-cloud-run-service.git | v1.0.0 |
 
 ## Resources
 
