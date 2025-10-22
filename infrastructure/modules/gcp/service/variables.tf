@@ -2,8 +2,16 @@ variable "project_id" {
   type = string
 }
 
+variable "project_name" {
+  type = string
+}
+
 variable "region" {
   type = string
+}
+
+variable "is_primary_region" {
+  type = bool
 }
 
 variable "service_name" {
@@ -18,7 +26,7 @@ variable "service_port" {
   type = number
 }
 
-variable "service_domain" {
+variable "subdomain" {
   type    = string
   default = null
 }
@@ -69,6 +77,16 @@ variable "secrets" {
   type = list(object({
     env_var     = string
     secret_name = string
+    existing    = optional(bool, false)
   }))
   default = []
+}
+
+variable "cloudsql_instance_name" {
+  type = string
+}
+
+variable "enable_http_traffic" {
+  type    = bool
+  default = false
 }

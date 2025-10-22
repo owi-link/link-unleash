@@ -3,22 +3,41 @@ locals {
   env_cfg = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
   defaults = {
-    service_name          = "unleash"
-    cpu                   = 1
-    memory                = "1Gi"
-    min_instances         = 1
-    max_instances         = 5
-    service_port          = 4242
-    allow_unauthenticated = true
-    ingress_mode          = "INGRESS_TRAFFIC_ALL"
+    is_primary_region      = false
+    service_name           = "unleash"
+    cpu                    = 1
+    memory                 = "1Gi"
+    min_instances          = 1
+    max_instances          = 5
+    service_port           = 4242
+    allow_unauthenticated  = true
+    ingress_mode           = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
+    subdomain              = "features"
+    cloudsql_instance_name = "shared-link-db-instances-us-east1"
     env_vars = [
+      {
+        name  = "DATABASE_HOST"
+        value = "/cloudsql/link-app-438915:us-east1:shared-link-db-instances-us-east1"
+      },
+      {
+        name  = "DATABASE_NAME"
+        value = "unleash-db"
+      },
+      {
+        name  = "DATABASE_USERNAME"
+        value = "data-admin"
+      },
+      {
+        name  = "DATABASE_SSL"
+        value = "false"
+      },
       {
         name  = "UNLEASH_DISABLE_DB_MIGRATION"
         value = "false"
       },
       {
         name  = "UNLEASH_URL"
-        value = "https://features.liminal-infra.com"
+        value = "https://features.liminal.co"
       }
     ]
     secrets = [
@@ -27,14 +46,24 @@ locals {
         secret_name = "unleash-secret"
       },
       {
-        env_var     = "DB_USER"
-        secret_name = "db-user"
-      },
-      {
-        env_var     = "DB_PASSWORD"
-        secret_name = "db-password"
+        env_var     = "DATABASE_PASSWORD"
+        secret_name = "shared-link-db-instances-us-east1-data-admin"
+        existing    = true
       }
     ]
+    service_startup_probe = {
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      http_get = {
+        path = "/health"
+      }
+    }
+    service_liveness_probe = {
+      initial_delay_seconds = 15
+      http_get = {
+        path = "/health"
+      }
+    }
   }
 }
 
