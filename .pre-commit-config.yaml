@@ -1,0 +1,21 @@
+---
+repos:
+  - repo: https://github.com/tofuutils/pre-commit-opentofu
+    rev: v2.2.1
+    hooks:
+      - id: tofu_fmt
+        args:
+          - --args=-no-color
+          - --args=-diff
+          - --args=-write=true
+      - id: tofu_validate
+      - id: tofu_docs
+        args:
+          - --hook-config=--path-to-file=README.md
+          - --hook-config=--add-to-existing-file=true
+          - --hook-config=--create-file-if-not-exist=true
+      - id: tofu_tflint
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.30
+    hooks:
+      - id: terragrunt-hcl-fmt
