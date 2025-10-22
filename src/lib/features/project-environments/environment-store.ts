@@ -195,7 +195,7 @@ export default class EnvironmentStore implements IEnvironmentStore {
             qB = qB.where(query);
         }
         if (this.isOss) {
-            qB = qB.whereIn('name', ['default', 'development', 'production']);
+            qB = qB.whereIn('name', ['default', 'development', 'production', 'staging', 'demo']);
         }
         const rows = await qB;
         stopTimer();
@@ -225,7 +225,7 @@ export default class EnvironmentStore implements IEnvironmentStore {
             qB = qB.where(query);
         }
         if (this.isOss) {
-            qB = qB.whereIn('name', ['default', 'development', 'production']);
+            qB = qB.whereIn('name', ['default', 'development', 'production', 'staging', 'demo']);
         }
         const rows = await qB;
         stopTimer();
@@ -281,6 +281,8 @@ export default class EnvironmentStore implements IEnvironmentStore {
                 'default',
                 'production',
                 'development',
+                'staging',
+                'demo'
             ]);
         }
 

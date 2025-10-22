@@ -21,6 +21,8 @@ const isProxyApi = ({ path }) => {
     return (
         path.indexOf('/api/proxy') > -1 ||
         path.indexOf('/api/development/proxy') > -1 ||
+        path.indexOf('/api/staging/proxy') > -1 ||
+        path.indexOf('/api/demo/proxy') > -1 ||
         path.indexOf('/api/production/proxy') > -1 ||
         path.indexOf('/api/frontend') > -1
     );

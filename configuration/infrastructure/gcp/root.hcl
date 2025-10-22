@@ -14,6 +14,7 @@ locals {
     ingress_mode           = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
     subdomain              = "features"
     cloudsql_instance_name = "shared-link-db-instances-us-east1"
+    enable_http_traffic    = false
     env_vars = [
       {
         name  = "DATABASE_HOST"
