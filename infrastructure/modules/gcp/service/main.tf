@@ -4,7 +4,7 @@ data "google_sql_database_instance" "db" {
 }
 
 module "cloud-run-service" {
-  source = "git@github.com:owi-link/terraform-gcp-cloud-run-service.git?ref=v1.1.0"
+  source = "git@github.com:owi-link/terraform-gcp-cloud-run-service.git?ref=v1.3.0"
 
   project_id             = var.project_id
   project_name           = var.project_name
